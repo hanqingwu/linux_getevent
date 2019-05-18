@@ -90,7 +90,7 @@ int get_event()
         else if (rc > 0)
         {
             for (list<int>::iterator it = fd_list.begin(); it != fd_list.end(); it++)
-            {
+            
                 if (FD_ISSET (*it, &rfdset))
                 {
                     while ((rc = read(*it, &event, sizeof(event))) > 0) {  
