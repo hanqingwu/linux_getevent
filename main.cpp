@@ -20,10 +20,12 @@ struct input_event event;
 #include <list>
 #include <iostream>
 
+#include "getevent.h"
 
 using namespace std;
 
 
+#if 0
 #define MAX_INPUT_NUM   32
 
 void set_non_blocking(int fd)
@@ -174,6 +176,9 @@ int get_event()
     return 0;
 }
 
+#endif
+
+
 int main(int argc, char **argv)  
 {  
     char          name[64];           /* RATS: Use ok, but could be better */  
@@ -220,7 +225,17 @@ int main(int argc, char **argv)
         }  
     }  
   
-    get_event();
+    InputSubSystem   input_system;
+
+    input_system.init(2);
+
+    while(1)
+    {
+        usleep(10000);
+        input_system.get_input_event(&event);
+    }
+
+    input_system.exit();
 
     return 0;
 

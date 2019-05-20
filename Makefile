@@ -1,6 +1,6 @@
 PROJECT_DIR := $(shell pwd)
 PROM = getevent 
-OBJ = main.o
+OBJ = main.o getevent.o
 
 $(PROM): $(OBJ)
 	$(CXX) -o $(PROM) $(OBJ) $(CFLAGS) -lpthread

@@ -10,11 +10,6 @@
 
 
 #include <linux/input.h>  
-#include <list>
-
-
-#define MAX_INPUT_NUM   32
-
 
 class InputSubSystem
 {
@@ -22,15 +17,19 @@ public:
     InputSubSystem();
     ~InputSubSystem();
 
-    int init();
+    //初始化打开input event 设备句柄 
+    //event_num 为不同event 设备
+    int init(int event_num);
+
+    //读取事件
     int get_input_event(struct input_event *event);
 
+    //释放input event 设备句柄 
     void exit();
 
 private:
 
-    std::list<int>  fd_list;
-    int maxfd;
+    int event_fd;
 
 };
 
